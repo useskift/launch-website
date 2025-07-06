@@ -1,0 +1,48 @@
+{
+  "name": "@useskift/launch-website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "The pre-release launch website for @useskift",
+  "keywords": [
+    "website",
+    "front-end",
+    "public",
+    "pre-release"
+  ],
+  "homepage": "https://github.com/useskift/launch-website",
+  "bugs": {
+    "url": "https://github.com/useskift/launch-website/issues",
+    "email": "hello@skift.work"
+  },
+  "license": "AGPL-3.0-only",
+  "author": "Skift <hello@skift.work> (https://skift.work)",
+  "funding": "https://github.com/sponsors/useskift",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler dev",
+    "astro": "astro",
+    "deploy": "astro build && wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/sitemap": "^3.4.1",
+    "@sentry/astro": "^9.35.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.11.0",
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "wrangler": "^4.23.0"
+  },
+  "private": true
+}

@@ -1,0 +1,191 @@
+name: Automated pull request pipeline
+
+on:
+  schedule:
+    - cron: "0 9 */14 * 1-5"
+  workflow_dispatch:
+
+jobs:
+  create-staging-pr:
+    name: Create develop to staging PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if develop branch exists
+        id: check-develop
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/develop; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if staging branch exists
+        id: check-staging
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/staging; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create staging branch if it doesn't exist
+        if: steps.check-staging.outputs.exists == 'false'
+        run: |
+          git checkout -b staging
+          git push origin staging
+          echo "Created staging branch from current HEAD"
+
+      - name: Check for differences between develop and staging
+        id: check-diff
+        if: steps.check-develop.outputs.exists == 'true' && steps.check-staging.outputs.exists == 'true'
+        run: |
+          git fetch origin develop staging
+          if git diff --quiet origin/staging..origin/develop; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for existing PR
+        id: check-pr
+        if: steps.check-diff.outputs.has_changes == 'true'
+        run: |
+          existing_pr=$(gh pr list --base staging --head develop --state open --json number --jq '.[0].number')
+          if [ "$existing_pr" != "null" ] && [ "$existing_pr" != "" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "number=$existing_pr" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create develop to staging PR
+        if: steps.check-diff.outputs.has_changes == 'true' && steps.check-pr.outputs.exists == 'false'
+        run: |
+          gh pr create \
+            --title "Merge develop into staging" \
+            --body "This pull request was automatically created to merge the latest changes from \`develop\` into \`staging\`.
+
+          **⚠️ This pull request will trigger a staging deployment when merged!**
+
+          ### Changes
+          This pull request includes all commits made to the \`develop\` branch since the last merge to \`staging\`.
+
+          ### Review checklist
+          - [ ] Review all changes for staging readiness.
+          - [ ] Ensure all tests are passing.
+          - [ ] Verify no breaking changes.
+          - [ ] Check for any configuration changes needed for staging.
+
+          **Note:** This pull request should be reviewed and merged by the engineering team." \
+            --base staging \
+            --head develop \
+            --label "needs review" \
+            --assignee @me
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  create-production-pr:
+    name: Create staging to main PR
+    runs-on: ubuntu-latest
+    needs: create-staging-pr
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if staging branch exists
+        id: check-staging
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/staging; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if main branch exists
+        id: check-main
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/main; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+          fi
+
+      - name: Create main branch if it doesn't exist
+        if: steps.check-main.outputs.exists == 'false'
+        run: |
+          git checkout -b main
+          git push origin main
+          echo "Created main branch from current HEAD"
+
+      - name: Check for differences between staging and main
+        id: check-diff
+        if: steps.check-staging.outputs.exists == 'true' && steps.check-main.outputs.exists == 'true'
+        run: |
+          git fetch origin staging main
+          if git diff --quiet origin/main..origin/staging; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for existing PR
+        id: check-pr
+        if: steps.check-diff.outputs.has_changes == 'true'
+        run: |
+          existing_pr=$(gh pr list --base main --head staging --state open --json number --jq '.[0].number')
+          if [ "$existing_pr" != "null" ] && [ "$existing_pr" != "" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "number=$existing_pr" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create staging to main PR
+        if: steps.check-diff.outputs.has_changes == 'true' && steps.check-pr.outputs.exists == 'false'
+        run: |
+          gh pr create \
+            --title "Release staging to main" \
+            --body "This pull request was automatically created to release the latest changes from \`staging\` into \`main\` (production).
+
+          **⚠️ This pull request will trigger a production deployment when merged!**
+
+          ### Changes
+          This pull request includes all commits made to the \`staging\` branch since the last release to \`main\`.
+
+          ### Pre-release checklist
+          - [ ] All staging tests are passing.
+          - [ ] Performance testing completed.
+          - [ ] Security review completed.
+          - [ ] Documentation updated.
+          - [ ] Release notes prepared.
+          - [ ] Deployment plan reviewed.
+
+          **Note:** This pull request requires careful review and approval before merging." \
+            --base main \
+            --head staging \
+            --label "release,needs review" \
+            --assignee @me
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

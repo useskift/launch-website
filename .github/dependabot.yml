@@ -1,0 +1,25 @@
+version: 2
+
+updates:
+  - package-ecosystem: bun
+    directory: "/"
+    labels:
+      - "Dependency"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+
+  - package-ecosystem: github-actions
+    labels:
+      - "Dependency"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+
+  - package-ecosystem: npm
+    directory: "/"
+    labels:
+      - "Dependency"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"

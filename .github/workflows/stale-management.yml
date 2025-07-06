@@ -1,0 +1,101 @@
+name: Close stale issues and PRs
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+jobs:
+  stale:
+    name: Mark and close stale issues and PRs
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Handle stale issues and PRs
+        uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Days before marking as stale (27 days = 30 - 3 day warning)
+          days-before-stale: 27
+
+          # Days before closing after marked as stale (3 days warning)
+          days-before-close: 3
+
+          # Ascending order (oldest first)
+          ascending: true
+
+          # Remove stale label when issues/PRs are updated
+          remove-stale-when-updated: true
+
+          # Debug mode (set to true for testing)
+          debug-only: false
+
+          # Operations per run (prevent rate limiting)
+          operations-per-run: 100
+
+          stale-issue-label: "blocked"
+          stale-pr-label: "blocked"
+          exempt-issue-labels: "security,enhancement,bug,documentation,good first issue"
+          exempt-pr-labels: "security,wip"
+
+          # Messages for issues
+          stale-issue-message: |
+            This issue has been automatically marked as stale because it has not had recent activity for 27 days.
+
+            - This issue will be **automatically closed in 3 days** if no further activity occurs.
+            - To keep this issue open, simply add a comment or remove the `blocked` label.
+            - Add labels like `enhancement`, `bug`, or `documentation` to prevent future stale marking
+
+            **Need help?** Check out the [Contributing Guidelines](./CONTRIBUTING.md) for information on how to keep issues active.
+
+          close-issue-message: |
+            This issue has been automatically closed due to inactivity.
+
+            **Why was this closed?**
+            - No activity for 30 days (27 days + 3 day warning period)
+            - Marked as stale 3 days ago with no response.
+
+            **Can this be reopened?** If this issue is still relevant, comment on this issue explaining the current status or reopen it manually.
+
+            **Want to prevent this in the future?**
+            - Keep issues active with regular updates.
+            - Use exempt labels like `security`, `enhancement`, `bug`, `documentation`, `good first issue`.
+
+          # Messages for pull requests
+          stale-pr-message: |
+            This pull request has been automatically marked as stale because it has not had recent activity for 27 days.
+
+            **Timeline:**
+            - This PR will be **automatically closed in 3 days** if no further activity occurs.
+            - To keep this PR open, simply add a comment, push new commits, or remove the `blocked` label.
+
+            **If this PR is still being worked on:**
+            - Add a comment with current status or updates.
+            - Push new commits to update the branch.
+            - Remove the `blocked` label.
+            - Add labels like `wip` to prevent future stale marking.
+
+            **Need to rebase or update?** Consider rebasing against the latest target branch to show continued development.
+            **Need help?** Check out the [Contributing Guidelines](./CONTRIBUTING.md) for more information.
+
+          close-pr-message: |
+            This pull request has been automatically closed due to inactivity.
+
+            **Why was this closed?**
+            - No activity for 30 days (27 days + 3 day warning period)
+            - Marked as stale 3 days ago with no response.
+
+            **Can this be reopened?** If this PR is still being worked on, comment on this PR explaining the current status, push new commits, or reopen it manually.
+
+            **Alternative approaches:**
+            - Create a fresh PR with updated code.
+            - Reference this PR in the new one for context.
+
+            **Want to prevent this in the future?**
+            - Keep PRs active with regular commits or comments.
+            - Use exempt labels: `security`, `wip`.
+            - Consider draft PRs for work-in-progress.
