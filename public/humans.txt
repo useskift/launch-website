@@ -1,0 +1,14 @@
+/* 
+   Hello, human!
+
+   We're Skift – real people, real passion, real coffee.
+   We believe in making work better, one Skift at a time.
+
+   Want to join us on our journey?
+   Take a Skift with us: https://skift.work/careers
+
+   Fun facts:
+   - Our favorite Swedish word: Skift (it means "shift"!)
+   - Our favorite question: "What's next?"
+*/
+

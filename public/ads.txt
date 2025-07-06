@@ -1,0 +1,3 @@
+google.com, pub-7812892668273396, DIRECT, f08c47fec0942fa0
+
+# For more info: https://iabtechlab.com/ads-txt/
