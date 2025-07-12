@@ -12,15 +12,15 @@
 
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 0.1
+    "head_sampling_rate": 0.1,
   },
 
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist"
+    "directory": "./dist",
   },
 
   "placement": {
-    "mode": "smart"
+    "mode": "smart",
   },
 }
