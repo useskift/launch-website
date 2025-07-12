@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "launch-website",
+  "name": "website",
   "main": "./dist/_worker.js/index.js",
   "compatibility_date": "2025-07-05",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -12,15 +12,15 @@
 
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 0.1,
+    "head_sampling_rate": 0.1
   },
 
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist",
+    "directory": "./dist"
   },
 
   "placement": {
-    "mode": "smart",
+    "mode": "smart"
   },
 }
