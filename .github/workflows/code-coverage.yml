@@ -22,16 +22,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Install Vitest
-        run: pnpm install --save-dev vitest @vitest/coverage-v8
+        run: npm install vitest @vitest/coverage-v8
 
       - name: Run tests with coverage
-        run: pnpm exec vitest run --coverage
+        run: npx vitest run --coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
