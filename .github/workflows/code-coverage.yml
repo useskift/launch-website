@@ -1,0 +1,50 @@
+name: Astro Code Coverage
+
+on:
+  push:
+    branches: [main, staging, develop]
+  pull_request:
+    branches: [main, staging, develop]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Vitest
+        run: pnpm install --save-dev vitest @vitest/coverage-v8
+
+      - name: Run tests with coverage
+        run: pnpm exec vitest run --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
+
+      - name: Upload coverage to DeepSource
+        run: |
+          # Install DeepSource CLI
+          curl https://deepsource.io/cli | sh
+          
+          # Report coverage to DeepSource
+          ./bin/deepsource report --analyzer test-coverage --key xml --value ./coverage/clover.xml
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
