@@ -67,7 +67,6 @@ export default defineConfig({
     ],
 
     responsiveStyles: true,
-    layout: "constrained",
   },
 
   markdown: {
