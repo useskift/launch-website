@@ -10,7 +10,7 @@ jobs:
     name: Create develop to staging PR
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
 
     steps:
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: create-staging-pr
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
 
     steps:
@@ -127,7 +127,6 @@ jobs:
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
-          fi
           fi
 
       - name: Create main branch if it doesn't exist
