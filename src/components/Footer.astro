@@ -1,0 +1,45 @@
+---
+const translations = {
+  en: {
+    send: "Send a letter to hello@skift.work",
+  },
+  sv: {
+    send: "Skicka ett brev till hello@skift.work",
+  },
+};
+
+const locale =
+  Astro.currentLocale === "en" || Astro.currentLocale === "sv"
+    ? Astro.currentLocale
+    : "en";
+
+async function safeExec(cmd: string) {
+  try {
+    const { execSync } = await import("child_process");
+    return execSync(cmd, { encoding: "utf-8" }).trim();
+  } catch {
+    return "unknown";
+  }
+}
+
+const commitHash = await safeExec("git rev-parse --short HEAD");
+const activeBranch = await safeExec("git rev-parse --abbrev-ref HEAD");
+---
+
+<div class="flex w-full flex-col items-center gap-1">
+  <a
+    href="mailto:hello@skift.work?subject=Hello%20Skift!"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="w-fit text-lime-700 underline decoration-dashed decoration-from-font underline-offset-2 transition hover:bg-lime-500 hover:text-lime-50 active:opacity-50 dark:text-lime-300"
+  >
+    <span>{translations[locale].send}</span>
+  </a>
+  <a
+    href="https://github.com/useskift/launch-website"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="w-fit text-xs text-stone-500 underline decoration-dashed decoration-from-font underline-offset-2 transition-opacity hover:opacity-75 active:opacity-50"
+    >{commitHash}@{activeBranch}</a
+  >
+</div>

@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ImgLogomarkLimedark from "../assets/logomark-limedark.svg";
+import Footer from "../components/Footer.astro";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 import NewsletterSignup from "../components/NewsletterSignup.astro";
 import FindElsewhere from "../components/sections/FindElsewhere.astro";
@@ -66,14 +67,7 @@ import LayoutMain from "../layouts/LayoutMain.astro";
 
       <hr class="my-8 border-stone-200 dark:border-stone-700" />
 
-      <a
-        href="mailto:hello@skift.work?subject=Hello%20Skift!"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-center text-lime-700 underline decoration-dashed decoration-from-font underline-offset-2 transition-opacity hover:bg-lime-500 hover:text-lime-50 active:opacity-50 dark:text-lime-300"
-      >
-        <span>Send us a letter at hello@skift.work</span>
-      </a>
+      <Footer />
     </div>
 
     <div
