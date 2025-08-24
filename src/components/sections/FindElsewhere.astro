@@ -1,0 +1,89 @@
+---
+import { Icon } from "astro-icon/components";
+
+const locale =
+  Astro.currentLocale === "en" || Astro.currentLocale === "sv"
+    ? Astro.currentLocale
+    : "en";
+
+const translations = {
+  en: {
+    heading: "Find us online",
+    description1:
+      "Sure, we might be new to the scene, but we're already making",
+    description_highlight: "waves",
+    description2: "on other platforms online. Give us a follow!",
+  },
+  sv: {
+    heading: "Hitta oss online",
+    description1: "Visst, vi kanske är nya i branschen, men vi gör redan",
+    description_highlight: "vågor",
+    description2: "på andra plattformar online. Följ oss gärna!",
+  },
+};
+
+const socials = [
+  {
+    name: "LinkedIn",
+    icon: "simple-icons:linkedin",
+    url: "https://www.linkedin.com/company/useskift/",
+  },
+  {
+    name: "GitHub",
+    icon: "simple-icons:github",
+    url: "https://github.com/useskift",
+  },
+  {
+    name: "X (Twitter)",
+    icon: "simple-icons:x",
+    url: "https://x.com/useskift",
+  },
+  {
+    name: "Bluesky",
+    icon: "simple-icons:bluesky",
+    url: "https://bsky.app/profile/useskift.bsky.social",
+  },
+  {
+    name: "Instagram",
+    icon: "simple-icons:instagram",
+    url: "https://www.instagram.com/useskift/",
+  },
+  {
+    name: "YouTube",
+    icon: "simple-icons:youtube",
+    url: "https://www.youtube.com/@useskift",
+  },
+];
+---
+
+<section class="space-y-4 text-stone-900 dark:text-stone-50">
+  <h2 class="text-2xl font-bold tracking-tight text-lime-500">
+    {translations[locale].heading}
+  </h2>
+  <p class="mb-6">
+    {translations[locale].description1}
+    <span
+      class="underline decoration-lime-500 decoration-wavy decoration-from-font underline-offset-2"
+      >{translations[locale].description_highlight}</span
+    >
+    {translations[locale].description2}
+  </p>
+
+  <ul class="grid gap-4 sm:grid-cols-2">
+    {
+      socials.map((social) => (
+        <li>
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex w-full items-center gap-2 rounded border border-lime-700 px-3 py-2 transition hover:opacity-75 active:scale-[0.98] active:opacity-50 sm:justify-between dark:border-lime-500"
+          >
+            <Icon name={social.icon} aria-hidden="true" />
+            <span class="font-medium">{social.name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

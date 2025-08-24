@@ -1,0 +1,26 @@
+---
+import HtmlHead from "../components/HtmlHead.astro";
+import "/src/styles/global.css";
+---
+
+<html lang={Astro.currentLocale}>
+  <head>
+    <HtmlHead />
+    <slot name="head" />
+  </head>
+  <body
+    class="scroll-smooth bg-amber-50 selection:bg-lime-500 selection:text-lime-50 dark:bg-stone-950"
+  >
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PZJNPDMS"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+
+    <main>
+      <slot name="content" />
+    </main>
+  </body>
+</html>

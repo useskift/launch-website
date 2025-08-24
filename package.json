@@ -1,0 +1,52 @@
+{
+  "private": true,
+  "name": "@useskift/launch-website",
+  "description": "The official HallinMedia website",
+  "type": "module",
+  "version": "3.1.0",
+  "homepage": "https://github.com/useskift/launch-website",
+  "bugs": {
+    "url": "https://github.com/useskift/launch-website",
+    "email": "engineering@skift.work"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": {
+    "name": "Skift",
+    "url": "https://skift.work/",
+    "email": "engineering@skift.work"
+  },
+  "funding": "https://github.com/sponsors/useskift",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/useskift/launch-website.git"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler dev",
+    "astro": "astro",
+    "deploy": "astro build && wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.5",
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/sitemap": "^3.5.1",
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^5.13.3",
+    "astro-icon": "^1.1.5",
+    "resend": "^6.0.1",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@iconify-json/simple-icons": "^1.2.48",
+    "@iconify-json/twemoji": "^1.2.4",
+    "@types/node": "^24.3.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-astro-organize-imports": "^0.4.11",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "wrangler": "^4.32.0"
+  },
+  "sideEffects": false
+}

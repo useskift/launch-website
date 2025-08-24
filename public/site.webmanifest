@@ -1,0 +1,21 @@
+{
+  "name": "Skift",
+  "short_name": "Skift",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#aaff01",
+  "background_color": "#aaff01",
+  "display": "standalone"
+}

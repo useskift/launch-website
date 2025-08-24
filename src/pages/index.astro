@@ -1,0 +1,91 @@
+---
+import { Image } from "astro:assets";
+import ImgLogomarkLimedark from "../assets/logomark-limedark.svg";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import NewsletterSignup from "../components/NewsletterSignup.astro";
+import FindElsewhere from "../components/sections/FindElsewhere.astro";
+import LayoutMain from "../layouts/LayoutMain.astro";
+---
+
+<LayoutMain>
+  <div
+    slot="content"
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center lg:flex-row lg:items-start lg:gap-16"
+  >
+    <div class="flex max-w-lg flex-col justify-center gap-8 p-8 py-12">
+      <section class="space-y-4 text-stone-900 dark:text-stone-50">
+        <header class="flex items-center justify-between gap-2 pb-4">
+          <Image
+            src={ImgLogomarkLimedark}
+            alt="Skift logo"
+            width={120}
+            class="select-none"
+          />
+          <LanguageSwitcher />
+        </header>
+
+        <h1 class="max-w-sm text-3xl font-bold tracking-tight text-lime-500">
+          Recruitment doesn't have to be hard.
+        </h1>
+        <p>
+          Skift is transforming recruitment, ATS, and HR management for
+          businesses of every size.
+        </p>
+        <p>
+          Our intuitive, next-generation tools simplify complex processes, help
+          attract top talent, and support building workplaces people love.
+        </p>
+        <p class="font-medium text-lime-700 dark:text-lime-300">
+          Smarter HR starts here—manage your people, not the paperwork.
+        </p>
+      </section>
+
+      <hr class="my-8 border-stone-200 dark:border-stone-700" />
+
+      <section class="space-y-4 text-stone-900 dark:text-stone-50">
+        <h2 class="text-2xl font-bold tracking-tight text-lime-500">
+          Ready to make Skift happen?
+        </h2>
+        <p>
+          As we're building the future of work, we'd like to invite you on this
+          journey by signing up for early access.
+        </p>
+        <p class="mb-6">
+          <span class="font-medium text-lime-700 dark:text-lime-300"
+            >Sign up for early access</span
+          > to be among the first to experience our innovative HR solutions and receive
+          exclusive updates on our progress.
+        </p>
+
+        <NewsletterSignup />
+      </section>
+
+      <hr class="my-8 border-stone-200 dark:border-stone-700" />
+
+      <FindElsewhere />
+
+      <hr class="my-8 border-stone-200 dark:border-stone-700" />
+
+      <a
+        href="mailto:hello@skift.work?subject=Hello%20Skift!"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-center text-lime-700 underline decoration-dashed decoration-from-font underline-offset-2 transition-opacity hover:bg-lime-500 hover:text-lime-50 active:opacity-50 dark:text-lime-300"
+      >
+        <span>Send us a letter at hello@skift.work</span>
+      </a>
+    </div>
+
+    <div
+      class="sticky top-0 hidden h-screen w-full bg-gradient-to-t from-lime-500 to-lime-900 lg:block"
+      aria-hidden="true"
+    >
+      <div class="relative h-full w-full overflow-hidden">
+        <span
+          class="absolute inset-x-0 bottom-14 -left-8 text-[16rem] leading-0 font-bold tracking-tight text-lime-600 select-none lg:text-[22rem]"
+          >skift.</span
+        >
+      </div>
+    </div>
+  </div>
+</LayoutMain>

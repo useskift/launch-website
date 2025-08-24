@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import ImgLogomarkLimedark from "../../assets/logomark-limedark.svg";
+import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
+import NewsletterSignup from "../../components/NewsletterSignup.astro";
+import FindElsewhere from "../../components/sections/FindElsewhere.astro";
+import LayoutMain from "../../layouts/LayoutMain.astro";
+---
+
+<LayoutMain>
+  <div
+    slot="content"
+    class="mx-auto flex max-w-7xl flex-col items-center justify-center lg:flex-row lg:items-start lg:gap-16"
+  >
+    <div class="flex max-w-lg flex-col justify-center gap-8 p-8 py-12">
+      <section class="space-y-4 text-stone-900 dark:text-stone-50">
+        <header class="flex items-center justify-between gap-2 pb-4">
+          <Image
+            src={ImgLogomarkLimedark}
+            alt="Skift logo"
+            width={120}
+            class="select-none"
+          />
+          <LanguageSwitcher />
+        </header>
+
+        <h1 class="max-w-sm text-3xl font-bold tracking-tight text-lime-500">
+          Rekrytering behöver inte vara svårt.
+        </h1>
+        <p>
+          Skift revolutionerar rekrytering, ATS och HR-hantering för företag av
+          alla storlekar.
+        </p>
+        <p>
+          Våra intuitiva verktyg förenklar komplexa processer, hjälper till att
+          attrahera de bästa talangerna och stödjer skapandet av arbetsplatser
+          som folk älskar.
+        </p>
+        <p class="font-medium text-lime-700 dark:text-lime-300">
+          Smartare HR börjar här - hantera dina medarbetare, inte
+          pappersarbetet.
+        </p>
+      </section>
+
+      <hr class="my-8 border-stone-200 dark:border-stone-700" />
+
+      <section class="space-y-4 text-stone-900 dark:text-stone-50">
+        <h2 class="text-2xl font-bold tracking-tight text-lime-500">
+          Redo att få Skift hända?
+        </h2>
+        <p>
+          Medan vi bygger framtidens arbetsliv, så vill vi ta med dig på resan
+          genom att anmäla dig för early access.
+        </p>
+        <p class="mb-6">
+          <span class="font-medium text-lime-700 dark:text-lime-300"
+            >Anmäl dig för early access</span
+          > för att vara bland de första att uppleva våra innovativa HR-lösningar
+          och få exklusiva uppdateringar om våra framsteg.
+        </p>
+
+        <NewsletterSignup />
+      </section>
+
+      <hr class="my-8 border-stone-200 dark:border-stone-700" />
+
+      <FindElsewhere />
+
+      <hr class="my-8 border-stone-200 dark:border-stone-700" />
+
+      <a
+        href="mailto:hello@skift.work?subject=Hello%20Skift!"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-center text-lime-700 underline decoration-dashed decoration-from-font underline-offset-2 transition-opacity hover:bg-lime-500 hover:text-lime-50 active:opacity-50 dark:text-lime-300"
+      >
+        <span>Skicka ett brev till hello@skift.work</span>
+      </a>
+    </div>
+
+    <div
+      class="sticky top-0 hidden h-screen w-full bg-gradient-to-t from-lime-500 to-lime-900 lg:block"
+      aria-hidden="true"
+    >
+      <div class="relative h-full w-full overflow-hidden">
+        <span
+          class="absolute inset-x-0 bottom-14 -left-8 text-[16rem] leading-0 font-bold tracking-tight text-lime-600 select-none lg:text-[22rem]"
+          >skift.</span
+        >
+      </div>
+    </div>
+  </div>
+</LayoutMain>

@@ -1,0 +1,11 @@
+/*
+* It's time to make a Skift.
+*
+* skift - noun, Swedish:
+* 1. round in a job, work shift
+* 2. work team
+* 3. shift, turn
+*
+* Become a part of the new workplace:
+* humans@skift.work
+*/

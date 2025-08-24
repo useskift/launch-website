@@ -1,0 +1,140 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const translations = {
+  en: {
+    heading: 'Sign up to "Skift Happens"',
+    first_name: "First name",
+    first_name_placeholder: "John",
+    last_name: "Last name",
+    last_name_placeholder: "Doe",
+    email: "Email address",
+    email_placeholder: "you@example.com",
+    signup: "Sign up",
+    disclaimer: "By signing up, you agree to our",
+    privacy_policy: "privacy policy",
+    disclaimer_unsubscribe: "You can unsubscribe at any time.",
+  },
+  sv: {
+    heading: 'Registrera dig för "Skift Happens"',
+    first_name: "Förnamn",
+    first_name_placeholder: "Anna",
+    last_name: "Efternamn",
+    last_name_placeholder: "Andersson",
+    email: "E-postadress",
+    email_placeholder: "du@example.com",
+    signup: "Registrera",
+    disclaimer: "Genom att registrera godkänner du vår",
+    privacy_policy: "integritetspolicy",
+    disclaimer_unsubscribe: "Du kan avprenumerera när som helst.",
+  },
+};
+
+const locale =
+  Astro.currentLocale === "en" || Astro.currentLocale === "sv"
+    ? Astro.currentLocale
+    : "en";
+---
+
+<form
+  method="post"
+  action="#"
+  class="space-y-4 rounded border border-lime-700 p-6 text-stone-900 dark:border-lime-500 dark:text-stone-50"
+>
+  <h3 class="text-lg font-semibold tracking-tight text-lime-500">
+    {translations[locale].heading}
+  </h3>
+
+  <div class="flex flex-col gap-4 sm:flex-row">
+    <div class="w-full">
+      <label
+        for="first_name"
+        class="text-sm font-medium text-stone-700 dark:text-stone-300"
+      >
+        {translations[locale].first_name}
+      </label>
+      <input
+        type="text"
+        name="first_name"
+        id="first_name"
+        required
+        class="mt-1 w-full rounded p-2 ring-1 ring-stone-300 placeholder:text-stone-400 dark:ring-stone-700 dark:placeholder:text-stone-600"
+        placeholder={translations[locale].first_name_placeholder}
+      />
+    </div>
+
+    <div class="w-full">
+      <label
+        for="last_name"
+        class="text-sm font-medium text-stone-700 dark:text-stone-300"
+      >
+        {translations[locale].last_name}
+      </label>
+      <input
+        type="text"
+        name="last_name"
+        id="last_name"
+        required
+        class="mt-1 w-full rounded p-2 ring-1 ring-stone-300 placeholder:text-stone-400 dark:ring-stone-700 dark:placeholder:text-stone-600"
+        placeholder={translations[locale].last_name_placeholder}
+      />
+    </div>
+  </div>
+
+  <div>
+    <label
+      for="email"
+      class="text-sm font-medium text-stone-700 dark:text-stone-300"
+    >
+      {translations[locale].email}
+    </label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      required
+      class="mt-1 w-full rounded p-2 ring-1 ring-stone-300 placeholder:text-stone-400 dark:ring-stone-700 dark:placeholder:text-stone-600"
+      placeholder={translations[locale].email_placeholder}
+    />
+  </div>
+
+  <div id="turnstile-container"></div>
+
+  <button
+    id="signup-btn"
+    type="submit"
+    class="w-full cursor-pointer rounded bg-lime-500 px-4 py-2 font-semibold text-stone-50 transition hover:bg-lime-600 active:scale-[0.98] active:opacity-50 disabled:cursor-not-allowed"
+  >
+    {translations[locale].signup}
+  </button>
+
+  <div
+    id="success-message"
+    aria-live="polite"
+    class="hidden w-full justify-center rounded bg-green-500 px-4 py-2 text-sm text-stone-50"
+  >
+    Success!
+  </div>
+
+  <div
+    id="error-message"
+    role="alert"
+    aria-live="assertive"
+    class="hidden w-full justify-center rounded bg-red-400 px-4 py-2 text-sm text-stone-50"
+  >
+    <span id="error-text">Error!</span>
+  </div>
+
+  <p class="text-center text-xs font-light">
+    {translations[locale].disclaimer}
+    <a
+      href={getRelativeLocaleUrl(locale, "legal/privacy-policy")}
+      class="text-lime-700 underline decoration-dashed decoration-from-font underline-offset-2 transition-opacity hover:bg-lime-500 hover:text-lime-50 active:opacity-50 dark:text-lime-300"
+      >{translations[locale].privacy_policy}</a
+    >. {translations[locale].disclaimer_unsubscribe}
+  </p>
+</form>
+
+<script>
+  import "./NewsletterSignup";
+</script>

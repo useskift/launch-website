@@ -1,0 +1,133 @@
+---
+import { Font } from "astro:assets";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import { ClientRouter } from "astro:transitions";
+
+const locale =
+  Astro.currentLocale === "en" || Astro.currentLocale === "sv"
+    ? Astro.currentLocale
+    : "en";
+
+const ogLocaleMap: Record<string, string> = { en: "en_US", sv: "sv_SE" };
+const ogLocale = ogLocaleMap[locale] ?? "en_US";
+
+const {
+  title = "Skift | Recruitment, ATS, and HR tools",
+  description = "Skift is transforming recruitment, ATS, and HR management with intuitive, next-generation tools.",
+  keywords = [],
+  article = false,
+} = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#AAFF01" />
+<meta name="generator" content={Astro.generator} />
+<meta
+  name="robots"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
+<meta name="googlebot" content="index, follow" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+<meta name="format-detection" content="telephone=no, address=no, email=no" />
+<meta name="application-name" content="Skift" />
+<title>{title}</title>
+
+<!-- Resource Hints -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+<link rel="dns-prefetch" href="//www.googletagmanager.com" />
+<link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin />
+<link rel="dns-prefetch" href="//challenges.cloudflare.com" />
+
+<!-- Fonts -->
+<Font cssVariable="--font-geist" preload />
+<Font cssVariable="--font-newsreader" preload />
+<Font cssVariable="--font-geist-mono" preload />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Skift" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Client Router -->
+<ClientRouter />
+
+<!-- Meta -->
+<meta name="description" content={description} />
+<meta name="author" content="Skift" />
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="canonical" href={Astro.url} />
+{
+  ["en", "sv"].map((lang) => (
+    <link
+      rel="alternate"
+      hreflang={lang}
+      href={getAbsoluteLocaleUrl(
+        lang,
+        Astro.url.pathname.replace(`/${Astro.currentLocale}`, ""),
+      )}
+    />
+  ))
+}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={getAbsoluteLocaleUrl(
+    "en",
+    Astro.url.pathname.replace(`/${Astro.currentLocale}`, ""),
+  )}
+/>
+
+<!-- Open Graph -->
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:site_name" content="Skift" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content="https://skift.work/meta.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={description} />
+<meta property="og:locale" content={ogLocale} />
+{
+  ["en", "sv"]
+    .filter((l) => l !== locale)
+    .map((l) => (
+      <meta
+        property="og:locale:alternate"
+        content={ogLocaleMap[l] ?? "en_US"}
+      />
+    ))
+}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content="https://skift.work/meta.png" />
+<meta name="twitter:image:alt" content={description} />
+
+<!-- Cloudflare Turnstile -->
+<script
+  is:inline
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+  defer></script>
+
+<!-- Google Tag Manager -->
+<script
+  is:inline
+  type="text/partytown"
+  src="https://www.googletagmanager.com/gtag/js?id=GTM-PZJNPDMS"></script>
+<script is:inline type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() {
+    dataLayer.push(arguments);
+  };
+  gtag("js", new Date());
+
+  gtag("config", "GTM-PZJNPDMS");
+</script>
