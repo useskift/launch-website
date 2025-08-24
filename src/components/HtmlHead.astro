@@ -111,6 +111,69 @@ const {
 <meta name="twitter:image" content="https://skift.work/meta.png" />
 <meta name="twitter:image:alt" content={description} />
 
+<!-- Schema: Corporation -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Corporation",
+    "name": "Skift",
+    "alternateName": "skift.work",
+    "url": "https://skift.work/",
+    "logo": "https://skift.work/logo.png",
+    "sameAs": [
+      "https://x.com/useskift",
+      "https://www.instagram.com/useskift/",
+      "https://www.youtube.com/@useskift",
+      "https://www.linkedin.com/company/useskift/",
+      "https://github.com/useskift",
+      "https://skift.work/"
+    ]
+  }
+</script>
+
+<!-- Schema: Local Business -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Skift",
+    "image": "https://skift.work/meta.png",
+    "@id": "https://skift.work/",
+    "url": "https://skift.work/",
+    "telephone": "",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "",
+      "addressLocality": "Kåge",
+      "postalCode": "934 31",
+      "addressCountry": "SE"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Thursday", "Tuesday", "Wednesday", "Friday"],
+        "opens": "08:00",
+        "closes": "16:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "15:00"
+      }
+    ],
+    "sameAs": [
+      "https://x.com/useskift",
+      "https://www.instagram.com/useskift/",
+      "https://www.youtube.com/@useskift",
+      "https://www.linkedin.com/company/useskift/",
+      "https://github.com/useskift",
+      "https://skift.work/"
+    ]
+  }
+</script>
+
 <!-- Cloudflare Turnstile -->
 <script
   is:inline
