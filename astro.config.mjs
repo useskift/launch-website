@@ -19,7 +19,11 @@ export default defineConfig({
   }),
 
   integrations: [
-    icon(),
+    icon({
+      include: {
+        twemoji: ["flag-sweden", "flag-united-kingdom"],
+      },
+    }),
     sitemap({
       changefreq: "weekly",
       priority: 1,
