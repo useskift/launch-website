@@ -43,13 +43,21 @@ export const server = {
     accept: "form",
     input: z.object({
       email: z.string().email("Please enter a valid email address"),
+      firstName: z
+        .string()
+        .min(2, "Please enter your first name")
+        .max(100, "Please enter a valid first name"),
+      lastName: z
+        .string()
+        .min(2, "Please enter your last name")
+        .max(100, "Please enter a valid last name"),
       "cf-turnstile-response": z
         .string()
         .min(1, "Please complete the verification"),
     }),
 
     handler: async (
-      { email, "cf-turnstile-response": turnstileToken },
+      { email, firstName, lastName, "cf-turnstile-response": turnstileToken },
       context,
     ) => {
       const clientIp = getClientIp(context.request);
@@ -58,6 +66,8 @@ export const server = {
       try {
         const { data, error } = await resend.contacts.create({
           email: email,
+          firstName: firstName,
+          lastName: lastName,
           unsubscribed: false,
           audienceId: "bb1e534e-a43e-4b67-9b8a-44b8fe607fce",
         });
