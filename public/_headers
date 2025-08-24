@@ -5,9 +5,6 @@
   X-Frame-Options: SAMEORIGIN
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: cross-origin
-  Access-Control-Allow-Origin: *
-  Access-Control-Allow-Methods: GET, POST, OPTIONS
-  Access-Control-Allow-Headers: Content-Type, Authorization
 
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
