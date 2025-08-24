@@ -1,9 +1,9 @@
 {
   "private": true,
   "name": "@useskift/launch-website",
-  "description": "The official HallinMedia website",
+  "description": "The pre-release launch website for @useskift",
   "type": "module",
-  "version": "3.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/useskift/launch-website",
   "bugs": {
     "url": "https://github.com/useskift/launch-website",
