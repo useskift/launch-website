@@ -4,7 +4,6 @@ import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,11 +41,6 @@ export default defineConfig({
           en: "en-US",
           sv: "sv-SE",
         },
-      },
-    }),
-    partytown({
-      config: {
-        forward: ["dataLayer.push", "_hsq.push"],
       },
     }),
   ],
