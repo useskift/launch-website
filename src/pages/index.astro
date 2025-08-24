@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { Image } from "astro:assets";
 import ImgLogomarkLimedark from "../assets/logomark-limedark.svg";
 import Footer from "../components/Footer.astro";
@@ -58,7 +60,7 @@ import LayoutMain from "../layouts/LayoutMain.astro";
           exclusive updates on our progress.
         </p>
 
-        <NewsletterSignup server:defer />
+        <NewsletterSignup />
       </section>
 
       <hr class="my-8 border-stone-200 dark:border-stone-700" />
