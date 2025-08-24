@@ -22,6 +22,14 @@ export default defineConfig({
     icon({
       include: {
         twemoji: ["flag-sweden", "flag-united-kingdom"],
+        "simple-icons": [
+          "linkedin",
+          "github",
+          "x",
+          "bluesky",
+          "instagram",
+          "youtube",
+        ],
       },
     }),
     sitemap({
