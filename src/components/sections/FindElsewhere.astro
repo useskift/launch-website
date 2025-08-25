@@ -1,5 +1,10 @@
 ---
-import { Icon } from "astro-icon/components";
+import SimpleIconsBluesky from "../icons/SimpleIconsBluesky.astro";
+import SimpleIconsGithub from "../icons/SimpleIconsGithub.astro";
+import SimpleIconsInstagram from "../icons/SimpleIconsInstagram.astro";
+import SimpleIconsLinkedIn from "../icons/SimpleIconsLinkedIn.astro";
+import SimpleIconsX from "../icons/SimpleIconsX.astro";
+import SimpleIconsYoutube from "../icons/SimpleIconsYoutube.astro";
 
 const locale =
   Astro.currentLocale === "en" || Astro.currentLocale === "sv"
@@ -25,32 +30,32 @@ const translations = {
 const socials = [
   {
     name: "LinkedIn",
-    icon: "simple-icons:linkedin",
+    component: SimpleIconsLinkedIn,
     url: "https://www.linkedin.com/company/useskift/",
   },
   {
     name: "GitHub",
-    icon: "simple-icons:github",
+    component: SimpleIconsGithub,
     url: "https://github.com/useskift",
   },
   {
     name: "X (Twitter)",
-    icon: "simple-icons:x",
+    component: SimpleIconsX,
     url: "https://x.com/useskift",
   },
   {
     name: "Bluesky",
-    icon: "simple-icons:bluesky",
+    component: SimpleIconsBluesky,
     url: "https://bsky.app/profile/useskift.bsky.social",
   },
   {
     name: "Instagram",
-    icon: "simple-icons:instagram",
+    component: SimpleIconsInstagram,
     url: "https://www.instagram.com/useskift/",
   },
   {
     name: "YouTube",
-    icon: "simple-icons:youtube",
+    component: SimpleIconsYoutube,
     url: "https://www.youtube.com/@useskift",
   },
 ];
@@ -79,7 +84,7 @@ const socials = [
             rel="noopener noreferrer"
             class="flex w-full items-center gap-2 rounded border border-lime-700 px-3 py-2 transition hover:opacity-75 active:scale-[0.98] active:opacity-50 sm:justify-between dark:border-lime-500"
           >
-            <Icon name={social.icon} aria-hidden="true" />
+            <social.component aria-hidden="true" class="w-4" />
             <span class="font-medium">{social.name}</span>
           </a>
         </li>

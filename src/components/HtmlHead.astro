@@ -1,13 +1,8 @@
 ---
 import { Font } from "astro:assets";
 import { getAbsoluteLocaleUrl } from "astro:i18n";
-import { ClientRouter } from "astro:transitions";
 
-const locale =
-  Astro.currentLocale === "en" || Astro.currentLocale === "sv"
-    ? Astro.currentLocale
-    : "en";
-
+const locale = Astro.currentLocale || "en";
 const ogLocaleMap: Record<string, string> = { en: "en_US", sv: "sv_SE" };
 const ogLocale = ogLocaleMap[locale] ?? "en_US";
 
@@ -51,9 +46,6 @@ const {
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="apple-mobile-web-app-title" content="Skift" />
 <link rel="manifest" href="/site.webmanifest" />
-
-<!-- Client Router -->
-<ClientRouter />
 
 <!-- Meta -->
 <meta name="description" content={description} />

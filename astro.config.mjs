@@ -2,7 +2,6 @@
 import { defineConfig, envField, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
-import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
@@ -18,19 +17,6 @@ export default defineConfig({
   }),
 
   integrations: [
-    icon({
-      include: {
-        twemoji: ["flag-sweden", "flag-united-kingdom"],
-        "simple-icons": [
-          "linkedin",
-          "github",
-          "x",
-          "bluesky",
-          "instagram",
-          "youtube",
-        ],
-      },
-    }),
     sitemap({
       changefreq: "weekly",
       priority: 1,
