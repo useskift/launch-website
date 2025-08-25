@@ -3,6 +3,7 @@ import { defineConfig, envField, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import sentry from "@sentry/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,6 +28,13 @@ export default defineConfig({
           en: "en-US",
           sv: "sv-SE",
         },
+      },
+    }),
+    sentry({
+      sourceMapsUploadOptions: {
+        project: "launch-website",
+        org: "skift",
+        authToken: process.env.SENTRY_AUTH_TOKEN,
       },
     }),
   ],
