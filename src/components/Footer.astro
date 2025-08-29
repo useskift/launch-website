@@ -23,7 +23,6 @@ async function safeExec(cmd: string) {
 }
 
 const commitHash = await safeExec("git rev-parse --short HEAD");
-const activeBranch = await safeExec("git rev-parse --abbrev-ref HEAD");
 ---
 
 <div class="flex w-full flex-col items-center gap-1">
@@ -40,6 +39,6 @@ const activeBranch = await safeExec("git rev-parse --abbrev-ref HEAD");
     target="_blank"
     rel="noopener noreferrer"
     class="w-fit text-xs text-stone-500 underline decoration-dashed decoration-from-font underline-offset-2 transition-opacity hover:opacity-75 active:opacity-50"
-    >{commitHash}@{activeBranch}</a
+    >{commitHash}</a
   >
 </div>
