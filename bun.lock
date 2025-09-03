@@ -4,12 +4,12 @@
     "": {
       "name": "launch-website",
       "dependencies": {
-        "@astrojs/cloudflare": "^12.6.5",
+        "@astrojs/cloudflare": "^12.6.6",
         "@astrojs/sitemap": "^3.5.1",
-        "@sentry/astro": "^10.5.0",
+        "@sentry/astro": "^10.8.0",
         "@tailwindcss/vite": "^4.1.12",
-        "astro": "^5.13.3",
-        "resend": "^6.0.1",
+        "astro": "^5.13.4",
+        "resend": "^6.0.2",
         "tailwindcss": "^4.1.12",
       },
       "devDependencies": {
@@ -18,7 +18,7 @@
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-astro-organize-imports": "^0.4.11",
         "prettier-plugin-tailwindcss": "^0.6.14",
-        "wrangler": "^4.32.0",
+        "wrangler": "^4.33.1",
       },
     },
   },
@@ -981,7 +981,7 @@
 
     "require-in-the-middle": ["require-in-the-middle@7.5.2", "", { "dependencies": { "debug": "^4.3.5", "module-details-from-path": "^1.0.3", "resolve": "^1.22.8" } }, "sha512-gAZ+kLqBdHarXB64XpAe2VCjB7rIRv+mU8tfRWziHRJ5umKsIHN2tLLv6EtMw7WCdP19S0ERVMldNvxYCHnhSQ=="],
 
-    "resend": ["resend@6.0.1", "", { "peerDependencies": { "@react-email/render": "^1.1.0" }, "optionalPeers": ["@react-email/render"] }, "sha512-xNZ0gKAOqQcH83lXsqNOwBbpKROnsZpQr9mXRdG6hrHTF9G9Il2pkoTRtq7rJzXMvCZX+I79oahsbSeaYOWRFA=="],
+    "resend": ["resend@6.0.2", "", { "peerDependencies": { "@react-email/render": "^1.1.0" }, "optionalPeers": ["@react-email/render"] }, "sha512-um08qWpSVvEVqAePEy/bsa7pqtnJK+qTCZ0Et7YE7xuqM46J0C9gnSbIJKR3LIcRVMgO9jUeot8rH0UI84eqMQ=="],
 
     "resolve": ["resolve@1.22.10", "", { "dependencies": { "is-core-module": "^2.16.0", "path-parse": "^1.0.7", "supports-preserve-symlinks-flag": "^1.0.0" }, "bin": { "resolve": "bin/resolve" } }, "sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w=="],
 
