@@ -29,13 +29,13 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.7",
-    "@astrojs/sitemap": "^3.5.1",
-    "@sentry/astro": "^10.8.0",
-    "@tailwindcss/vite": "^4.1.12",
-    "astro": "^5.13.5",
-    "resend": "^6.0.2",
-    "tailwindcss": "^4.1.12"
+    "@astrojs/cloudflare": "^12.6.9",
+    "@astrojs/sitemap": "^3.6.0",
+    "@sentry/astro": "^10.14.0",
+    "@tailwindcss/vite": "^4.1.13",
+    "astro": "^5.13.10",
+    "resend": "^6.1.0",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
