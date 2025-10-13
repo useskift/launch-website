@@ -31,7 +31,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.9",
     "@astrojs/sitemap": "^3.6.0",
-    "@sentry/astro": "^10.14.0",
+    "@sentry/astro": "^10.19.0",
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.13.10",
     "resend": "^6.1.0",
