@@ -29,20 +29,20 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.9",
+    "@astrojs/cloudflare": "^12.6.10",
     "@astrojs/sitemap": "^3.6.0",
-    "@sentry/astro": "^10.14.0",
-    "@tailwindcss/vite": "^4.1.13",
-    "astro": "^5.13.10",
-    "resend": "^6.1.0",
-    "tailwindcss": "^4.1.13"
+    "@sentry/astro": "^10.19.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "astro": "^5.14.4",
+    "resend": "^6.1.2",
+    "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
-    "@types/node": "^24.5.2",
+    "@types/node": "^24.7.2",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-astro-organize-imports": "^0.4.11",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "wrangler": "^4.39.0"
+    "wrangler": "^4.42.2"
   }
 }
